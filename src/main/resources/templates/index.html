@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmls:th="http://thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>List</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+	<div class="container mt-4">
+		<a th:href="@{/new}" class="btn btn-success">Nueva Nota</a>
+		<a th:href="@{http://localhost:8092/listar}" class="btn btn-primary">Listar Docentes</a>
+		<a th:href="@{http://localhost:8072/listar}" class="btn btn-primary">Listar Carreras</a>
+		<a th:href="@{http://localhost:8082/listar}" class="btn btn-primary">Listar Alumnos</a>
+		<a th:href="@{http://localhost:8052/listar}" class="btn btn-primary">Listar Materias</a>
+		<a th:href="@{http://localhost:8085/users}" class="btn btn-primary">Menu Principal</a>
+		<br> <br>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Nota1</th>
+					<th>Nota2</th>
+					<th>Nota3</th>
+					<th>Nota Final</th>
+					<th>Id Alumno</th>
+					<th>Nombre Alumno</th>
+					<th>Id Materia</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="nota:${notas}">
+					<td th:text=${nota.id}></td>
+					<td th:text=${nota.nota1}></td>
+					<td th:text=${nota.nota2}></td>
+					<td th:text=${nota.nota3}></td>
+					<td th:text=${nota.notaFinal}></td>
+					<td th:text=${nota.idAlumno}></td>
+					<td th:text=${nota.nombreAlumno}></td>
+					<td th:text=${nota.idMateria}></td>
+					<td> 
+						<a th:href="@{/edit/}+${nota.id}" class="btn btn-success">Editar</a>
+						<a th:onClick="eliminar([[${nota.id}]])" class="btn btn-danger">Eliminar</a>
+				</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="js/funciones.js"></script>
+	
+</body>
+</html>

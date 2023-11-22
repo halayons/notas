@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmls="http://thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Edición de notas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+	<div class="container mt-4">
+		<div class="col-sm-6">
+			<form th:action="@{/listar}" th:object="${notas}" method="post" onsubmit="return submitForm(this);">
+				<div class="card">
+					<div class="card-reader">
+						<h3>Module Notas</h3>
+					</div>
+					<div class="card-body">
+						<div class="form-group">
+							<label for="id">ID</label>
+							<input th:field="*{id}" type="text" class="form-control" id="id"/>
+						</div>
+						<div class="form-group">
+							<label for="nota1">Nota 1</label>
+							<input th:field="*{nota1}" type="text" class="form-control" id="nota1"/>
+						</div>
+						<div class="form-group">
+							<label for="nota2">Nota 2</label>
+							<input th:field="*{nota2}" type="text" class="form-control" id="nota2"/>
+						</div>					
+						<div class="form-group">
+							<label for="nota3">Nota 3</label>
+							<input th:field="*{nota3}" type="text" class="form-control" id="nota3"/>
+						</div>
+						
+						<div class="form-group">
+							<label for="nombrealu">Alumnos</label>
+							<select name="idAlumno" id="idAlumno">
+						        <option th:each="alumno:${listalumnos}" 
+						        th:value="${alumno.id}"
+						        th:text="${alumno.nombres}">
+						        </option>						        
+						      </select>
+							
+						</div>	
+						<div class="form-group">
+							<label for="materiaid">Id Materia</label>
+							<input th:field="*{idMateria}" type="text" class="form-control" id="materiaid"/>
+						</div>
+					</div>
+				</div>
+				<div class="card-footer">
+					<input type="submit" value="Save" class="btn btn-success">
+				</div>
+			</form>
+		</div>		
+	</div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js">  </script>
+	
+
+	<script>
+    function submitForm(form) {
+        swal({
+            title: "Esta seguro?",
+            text: "Los cambios se guardaran",
+            icon: "success",
+            buttons: true,
+            
+        })
+        .then(function (isOkay) {
+            if (isOkay) {
+                form.submit();
+            }
+        });
+        return false;
+    }
+</script>
+</body>
+</html>
